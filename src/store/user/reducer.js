@@ -2,11 +2,13 @@ import { LOG_OUT, LOGIN_SUCCESS, TOKEN_STILL_VALID } from "./actions";
 
 const initialState = {
   token: localStorage.getItem("token"),
-  name: null,
-  email: null
+  firstName: null,
+  lastName: null,
+  email: null,
+  isService: null,
 };
 
-export default (state = initialState, action) => {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN_SUCCESS:
       localStorage.setItem("token", action.payload.token);
@@ -22,4 +24,4 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
-};
+}
