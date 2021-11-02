@@ -1,6 +1,6 @@
 import { apiUrl } from "../../config/constants";
 import axios from "axios";
-import { selectToken } from "./selectors";
+import { selectToken, selectUser } from "./selectors";
 import {
   appLoading,
   appDoneLoading,
@@ -11,6 +11,8 @@ import {
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
 export const LOG_OUT = "LOG_OUT";
+export const SPACE_UPDATED = "SPACE_UPDATED";
+export const COMMENT_POST_SUCCESS = "COMMENT_POST_SUCCESS";
 
 const loginSuccess = (userWithToken) => {
   return {
@@ -63,6 +65,8 @@ export const login = (email, password) => {
         password,
       });
 
+      // console.log("any response here", response);
+
       dispatch(loginSuccess(response.data));
       dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
       dispatch(appDoneLoading());
@@ -108,6 +112,85 @@ export const getUserWithStoredToken = () => {
       // if we get a 4xx or 5xx response,
       // get rid of the token by logging out
       dispatch(logOut());
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
+export const postCommentSuccess = (comment) => ({
+  type: COMMENT_POST_SUCCESS,
+  payload: comment,
+});
+
+export const postComment = (name, comment) => {
+  return async (dispatch, getState) => {
+    const { space, token } = selectUser(getState());
+    // console.log(name, content, imageUrl);
+    dispatch(appLoading());
+
+    const response = await axios.post(
+      `${apiUrl}/me/${space.id}/stories`,
+      {
+        name,
+        comment,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    dispatch(
+      showMessageWithTimeout("success", false, response.data.message, 3000)
+    );
+    dispatch(postCommentSuccess(response.data));
+    dispatch(appDoneLoading());
+  };
+};
+
+export const spaceUpdated = (space) => ({
+  type: SPACE_UPDATED,
+  payload: space,
+});
+
+export const updateMySpace = (title, description, logoUrl, price) => {
+  return async (dispatch, getState) => {
+    const { space, token } = selectUser(getState());
+    // console.log("right space", space);
+    dispatch(appLoading());
+    // console.log(
+    //   `Title: ${title}, description: ${description}, price: ${price}, logo: ${logoUrl}`
+    // );
+    try {
+      const response = await axios.patch(
+        `${apiUrl}/spaces/${space.id}`,
+        {
+          title,
+          description,
+          logoUrl,
+          price,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      // console.log(response);
+
+      dispatch(
+        showMessageWithTimeout("success", false, "update successfull", 3000)
+      );
+      dispatch(spaceUpdated(response.data.space));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        // console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
       dispatch(appDoneLoading());
     }
   };

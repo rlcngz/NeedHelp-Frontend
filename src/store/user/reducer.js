@@ -6,6 +6,7 @@ const initialState = {
   lastName: null,
   email: null,
   isService: null,
+  space: null,
 };
 
 export default function reducer(state = initialState, action) {

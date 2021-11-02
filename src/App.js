@@ -7,7 +7,6 @@ import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
-
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/user/actions";
@@ -43,8 +42,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Categories} />
         <Route path="/categories/:id" component={Details} />
-        <Route path="/myspace" component={MySpace} />
-        {/* <Route path="/other" component={Other} /> */}
+        <Route path="/spaces/:id" component={MySpace} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
       </Switch>
