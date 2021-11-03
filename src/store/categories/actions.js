@@ -34,7 +34,7 @@ export const fetchCategories = () => {
 export const fetchCategoriesById = (id) => async (dispatch, getState) => {
   try {
     const res = await axios.get(`${apiUrl}/categories/${id}`);
-    // console.log("respond is here", res.data);
+    console.log("respond is here", res.data);
     dispatch(fetchDetails(res.data));
   } catch (e) {
     console.log(e.message);

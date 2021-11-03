@@ -9,9 +9,6 @@ import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 function MySpace() {
-  //   const dispatch = useDispatch();
-  //   const { userId } = useParams();
-
   const userSpace = useSelector(selectUserSpace);
   const [editMode, setEditMode] = useState(false);
 
