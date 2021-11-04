@@ -1,4 +1,4 @@
-import { FETCH_SPACES_SUCCESS, FETCH_SPACEDETAILS_SUCCESS } from "./actions";
+import { FETCH_REVIEWS_SUCCESS, FETCH_REVIEWDETAILS_SUCCESS } from "./actions";
 
 const initialState = {
   lists: [],
@@ -7,12 +7,12 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case FETCH_SPACES_SUCCESS:
+    case FETCH_REVIEWS_SUCCESS:
       return {
         ...state,
         lists: action.payload,
       };
-    case FETCH_SPACEDETAILS_SUCCESS:
+    case FETCH_REVIEWDETAILS_SUCCESS:
       return {
         ...state,
         select: { ...action.payload },

@@ -1,12 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 // import { useParams } from "react-router-dom";
 // import { fetchCategoriesById } from "../store/categories/actions";
 import { selectCategoryDetails } from "../store/categories/selectors";
 import { useSelector } from "react-redux";
 
-function Filter() {
+function Filter(props) {
+  const { value, setValue } = props;
   const category = useSelector(selectCategoryDetails);
-  //   console.log("anything here?", category);
+  // const filterDetails = useSelector(selectFilter);
+  const [checkedValues, setCheckedValues] = useState([]);
+  // console.log("anything category here?", category);
+  // console.log("anything category here?", filterDetails);
+
+  // useEffect(() => {
+  //   if (value) {
+  //     setValue({ ...value, services: value.services.filter(() => true) });
+  //   }
+  // }, [checkedValues, setValue, value]);
+
+  function handleCategoryChecked(event) {
+    var newChecked = checkedValues;
+    if (event.target.checked) {
+      newChecked = [...checkedValues, event.target.value];
+    } else {
+      newChecked = checkedValues.filter((el) => el !== event.target.value);
+    }
+    setCheckedValues(newChecked);
+    if (!newChecked.length) {
+      setValue(value);
+    } else {
+      setValue({
+        ...value,
+        services: value.services.filter((el) =>
+          newChecked.includes(el.id.toString())
+        ),
+      });
+    }
+  }
 
   return (
     <section>
@@ -18,7 +48,12 @@ function Filter() {
           <h5>{category.title}</h5>
           {category.services.map((service) => (
             <div key={service.id}>
-              <input type="checkbox" className="form-check-input filled-in" />
+              <input
+                type="checkbox"
+                className="form-check-input filled-in"
+                value={service.id}
+                onChange={handleCategoryChecked}
+              />
               <span>{service.title}</span>
             </div>
           ))}

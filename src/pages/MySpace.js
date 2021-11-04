@@ -33,7 +33,7 @@ function MySpace() {
         </p>
         <p>
           <b>Price:</b>
-          {userSpace.price}€ for hour
+          {userSpace.price} € for hour
         </p>
         <Container>
           {displayButtons ? (

@@ -13,6 +13,7 @@ import { getUserWithStoredToken } from "./store/user/actions";
 // import { Jumbotron } from "react-bootstrap";
 import Categories from "./pages/Categories";
 import Details from "./pages/Details";
+import Space from "./pages/Space";
 import MySpace from "./pages/MySpace";
 
 // const Home = () => (
@@ -42,7 +43,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={Categories} />
         <Route path="/categories/:id" component={Details} />
-        <Route path="/spaces/:id" component={MySpace} />
+        <Route path="/spaces/:id" component={Space} />
+        <Route path="/me" component={MySpace} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
       </Switch>

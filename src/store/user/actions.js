@@ -153,7 +153,7 @@ export const spaceUpdated = (space) => ({
   payload: space,
 });
 
-export const updateMySpace = (title, description, logoUrl, price) => {
+export const updateMySpace = (title, description, type, logoUrl, price) => {
   return async (dispatch, getState) => {
     const { space, token } = selectUser(getState());
     // console.log("right space", space);
@@ -167,6 +167,7 @@ export const updateMySpace = (title, description, logoUrl, price) => {
         {
           title,
           description,
+          type,
           logoUrl,
           price,
         },

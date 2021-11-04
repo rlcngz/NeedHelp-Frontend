@@ -1,46 +1,67 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategoriesById } from "../store/categories/actions";
 import { selectCategoryDetails } from "../store/categories/selectors";
-// import { selectUserSpace } from "../store/user/selectors";
+import { fetchReviews } from "../store/reviews/actions";
+// import { selectAllReviews } from "../store/reviews/selectors";
+
 import Loading from "../components/Loading";
 import Filter from "../components/Filter";
 
 function Details() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const category = useSelector(selectCategoryDetails);
+  const detail = useSelector(selectCategoryDetails);
+  const [filterDetails, setFilterDetails] = useState(null);
+  // const reviews = useSelector(selectAllReviews);
 
-  // console.log("anything here?", category);
+  // console.log("anything here?", detail);
+  // console.log("anything review", reviews);
 
   useEffect(() => {
     dispatch(fetchCategoriesById(id));
   }, [dispatch, id]);
 
-  if (!category) return <Loading />;
+  useEffect(() => {
+    dispatch(fetchReviews());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setFilterDetails(detail);
+  }, [detail]);
+
+  // useEffect(() => {
+  //   console.log("details", detail);
+  // }, [detail]);
+
+  if (!filterDetails) return <Loading />;
+
   return (
-    <div>
-      <Filter />
-      <h1>{category.title}</h1>
-      {category.services.map((service) => (
-        <div key={service.id}>
-          <h2>{service.title}</h2>
-          {service.spaces.map((space) => (
-            <ul key={space.id}>
-              {" "}
-              <div>
-                {" "}
+    <section>
+      <section>
+        <Filter setValue={setFilterDetails} value={filterDetails} />
+      </section>
+      <section>
+        {filterDetails.services.map((serv) => (
+          <div key={serv.id}>
+            <h2>{serv.title}</h2>
+            {serv.spaces.map((space) => (
+              <ul key={space.id}>
                 <li>
                   <h4>{space.title}</h4>
-                  <button>More Details</button>{" "}
+                  <img style={{ width: "100px" }} src={space.logoUrl} alt="" />
+                  <p>About: {space.description}</p>
+                  <Link to={`/spaces/${space.id}`}>
+                    <button>More details</button>
+                  </Link>
                 </li>
-              </div>
-            </ul>
-          ))}
-        </div>
-      ))}
-    </div>
+              </ul>
+            ))}
+          </div>
+        ))}
+      </section>
+    </section>
   );
 }
 

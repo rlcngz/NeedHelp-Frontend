@@ -12,12 +12,13 @@ export default function SpaceForm() {
   const [description, setDescription] = useState(space.description || "");
   const [price, setPrice] = useState(space.price);
   const [logoUrl, setLogoUrl] = useState(space.logoUrl);
+  const [type, setType] = useState(space.type);
 
   function submitForm(event) {
     event.preventDefault();
 
     // console.log(title, description);
-    dispatch(updateMySpace(title, description, logoUrl, price));
+    dispatch(updateMySpace(title, description, type, logoUrl, price));
   }
 
   return (
@@ -42,12 +43,29 @@ export default function SpaceForm() {
           placeholder="What is your space about"
         />
       </Form.Group>
+      <Form.Group controlId="formBasicSelect">
+        <Form.Label>Select Your Service</Form.Label>
+        <Form.Control
+          as="select"
+          value={type}
+          onChange={(e) => {
+            console.log("e.target.value", e.target.value);
+            setType(e.target.value);
+          }}
+        >
+          <option>House Cleaning</option>
+          <option>Gardening</option>
+          <option>Pet Walking</option>
+          <option>Tax Advisor</option>
+          <option>Bike Hiring</option>
+        </Form.Control>
+      </Form.Group>
       <Form.Group>
         <Form.Label>Price</Form.Label>
         <Form.Control
           value={price}
           onChange={(event) => setPrice(event.target.value)}
-          type="number"
+          type="text"
         />
       </Form.Group>
       <Form.Group>
