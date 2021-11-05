@@ -60,7 +60,7 @@ function Filter(props) {
         </div>
       </section>
 
-      <section>
+      {/* <section>
         <h5 className="font-weight-bold mb-3">Price</h5>
       </section>
       <section>
@@ -134,7 +134,7 @@ function Filter(props) {
             €200 & Above
           </label>
         </div>
-      </section>
+      </section> */}
     </section>
   );
 }

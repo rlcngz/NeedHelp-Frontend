@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { apiUrl } from "../config/constants";
+
 import { useSelector, useDispatch } from "react-redux";
 import { selectUserSpace } from "../store/user/selectors";
 import { updateMySpace } from "../store/user/actions";
@@ -10,16 +13,24 @@ export default function SpaceForm() {
   const dispatch = useDispatch();
   const [title, setTitle] = useState(space.title);
   const [description, setDescription] = useState(space.description || "");
+  const [serviceId, setServiceId] = useState(space.serviceId);
   const [price, setPrice] = useState(space.price);
   const [logoUrl, setLogoUrl] = useState(space.logoUrl);
-  const [type, setType] = useState(space.type);
+  const [serviceOptions, setServiceOptions] = useState([]);
 
   function submitForm(event) {
     event.preventDefault();
 
-    // console.log(title, description);
-    dispatch(updateMySpace(title, description, type, logoUrl, price));
+    dispatch(updateMySpace(title, description, serviceId, price, logoUrl));
   }
+  async function fetchServiceOptions() {
+    const res = await axios.get(`${apiUrl}/services`);
+    // console.log("respond", res.data);
+    setServiceOptions(res.data.services);
+  }
+  useEffect(() => {
+    fetchServiceOptions();
+  }, []);
 
   return (
     <Form>
@@ -44,20 +55,21 @@ export default function SpaceForm() {
         />
       </Form.Group>
       <Form.Group controlId="formBasicSelect">
-        <Form.Label>Select Your Service</Form.Label>
+        <Form.Label>Select Your Service Type</Form.Label>
         <Form.Control
           as="select"
-          value={type}
+          value={serviceId}
           onChange={(e) => {
-            console.log("e.target.value", e.target.value);
-            setType(e.target.value);
+            // console.log("e.target.value", e.target.value);
+            setServiceId(e.target.value);
           }}
         >
-          <option>House Cleaning</option>
-          <option>Gardening</option>
-          <option>Pet Walking</option>
-          <option>Tax Advisor</option>
-          <option>Bike Hiring</option>
+          <option value={-1}></option>
+          {serviceOptions.map((option) => (
+            <option value={option.id} key={option.id}>
+              {option.title}
+            </option>
+          ))}
         </Form.Control>
       </Form.Group>
       <Form.Group>
