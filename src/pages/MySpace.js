@@ -9,9 +9,6 @@ import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
 function MySpace() {
-  //   const dispatch = useDispatch();
-  //   const { userId } = useParams();
-
   const userSpace = useSelector(selectUserSpace);
   const [editMode, setEditMode] = useState(false);
 
@@ -36,7 +33,7 @@ function MySpace() {
         </p>
         <p>
           <b>Price:</b>
-          {userSpace.price}€ for hour
+          {userSpace.price} € for hour
         </p>
         <Container>
           {displayButtons ? (

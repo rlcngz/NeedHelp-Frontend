@@ -122,17 +122,18 @@ export const postCommentSuccess = (comment) => ({
   payload: comment,
 });
 
-export const postComment = (name, comment) => {
+export const postComment = (firstName, comment, id) => {
   return async (dispatch, getState) => {
-    const { space, token } = selectUser(getState());
-    // console.log(name, content, imageUrl);
+    const { token } = selectUser(getState());
+
     dispatch(appLoading());
 
     const response = await axios.post(
-      `${apiUrl}/me/${space.id}/stories`,
+      `${apiUrl}/reviews`,
       {
-        name,
+        firstName,
         comment,
+        spaceId: id,
       },
       {
         headers: {
@@ -140,6 +141,7 @@ export const postComment = (name, comment) => {
         },
       }
     );
+    // console.log("am I getting?", response.data);
     dispatch(
       showMessageWithTimeout("success", false, response.data.message, 3000)
     );
@@ -153,20 +155,27 @@ export const spaceUpdated = (space) => ({
   payload: space,
 });
 
-export const updateMySpace = (title, description, logoUrl, price) => {
+export const updateMySpace = (
+  title,
+  description,
+  serviceId,
+  price,
+  logoUrl
+) => {
   return async (dispatch, getState) => {
     const { space, token } = selectUser(getState());
     // console.log("right space", space);
     dispatch(appLoading());
-    // console.log(
-    //   `Title: ${title}, description: ${description}, price: ${price}, logo: ${logoUrl}`
-    // );
+    console.log(
+      `Title: ${title}, description: ${description}, price: ${price}, serviceId: ${serviceId},logo: ${logoUrl}`
+    );
     try {
       const response = await axios.patch(
         `${apiUrl}/spaces/${space.id}`,
         {
           title,
           description,
+          serviceId,
           logoUrl,
           price,
         },

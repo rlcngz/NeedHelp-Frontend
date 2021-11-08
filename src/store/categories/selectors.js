@@ -1,3 +1,5 @@
 export const selectCategories = (state) => state.categories.list;
 
-export const selectDetails = (state) => state.categories.selected;
+export const selectCategoryDetails = (state) => state.categories.selected;
+
+export const selectFilter = (state) => state.categories.selected.services;

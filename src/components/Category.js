@@ -9,7 +9,7 @@ function Category({ id, title }) {
     <Jumbotron>
       <Card>
         <Card.Body>
-          <Card.Title>
+          <Card.Title style={{ alignContent: "center" }}>
             <Link to={`/categories/${id}`}>{title}</Link>
           </Card.Title>
         </Card.Body>

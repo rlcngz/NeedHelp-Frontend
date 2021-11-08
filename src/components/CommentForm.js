@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { postComment } from "../store/user/actions";
+import { useParams } from "react-router";
+import { useDispatch } from "react-redux";
+import { postComment } from "../store/user/actions";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 function CommentForm() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
-
+  const { id } = useParams();
   function submitForm(event) {
     event.preventDefault();
-    // dispatch(postComment(name, comment));
+    dispatch(postComment(name, comment, id));
   }
-
   return (
     <Form as={Col} md={{ span: 4, offset: 2 }}>
       <h1 className="mt-5 mb-5">Leave a comment</h1>
