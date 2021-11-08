@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCategoriesById } from "../store/categories/actions";
 import { selectCategoryDetails } from "../store/categories/selectors";
 import { fetchReviews } from "../store/reviews/actions";
-// import { selectAllReviews } from "../store/reviews/selectors";
-
 import Loading from "../components/Loading";
 import Filter from "../components/Filter";
 
@@ -14,10 +12,6 @@ function Details() {
   const { id } = useParams();
   const detail = useSelector(selectCategoryDetails);
   const [filterDetails, setFilterDetails] = useState(null);
-  // const reviews = useSelector(selectAllReviews);
-
-  // console.log("anything here?", detail);
-  // console.log("anything review", reviews);
 
   useEffect(() => {
     dispatch(fetchCategoriesById(id));
@@ -31,21 +25,18 @@ function Details() {
     setFilterDetails(detail);
   }, [detail]);
 
-  // useEffect(() => {
-  //   console.log("details", detail);
-  // }, [detail]);
-
   if (!filterDetails) return <Loading />;
 
   return (
     <section>
-      <section>
+      <section style={{ marginTop: "25px" }}>
+        {" "}
         <Filter setValue={setFilterDetails} value={filterDetails} />
       </section>
-      <section>
+      <section style={{ display: "flex", marginTop: "50px" }}>
         {filterDetails.services.map((serv) => (
           <div key={serv.id}>
-            <h2>{serv.title}</h2>
+            <h3>{serv.title}</h3>
             {serv.spaces.map((space) => (
               <ul key={space.id}>
                 <li>

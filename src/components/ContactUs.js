@@ -1,61 +1,66 @@
-// render() {
-//     return (
-//         <div className="section">
-//             <div className="container">
-//                 <div className="row">
-//                     <div className="col-md-12">
-//                         <div className="section-title">
-//                             <h2 className="title">Contact Us</h2>
-//                             <p>Let us know what you think! In order to provide better service,
-//                                  please do not hesitate to give us your feedback. Thank you.</p><hr/>
-//                             <form id="contact-form" onSubmit={this.submitEmail.bind(this)}
-//                                 method="POST">
-//                             <div className="form-group">
-//                             <div className="row">
-//                             <div className="col-md-6">
-//                                 <input placeholder = "Name"  id="name" type="text"
-//                                    className="form-control" required value={this.state.name}
-//                                    onChange={this.onNameChange.bind(this)}/>
-//                             </div>
-//                             <div className="col-md-6">
-//                                 <input placeholder = "Email"  id="email" type="email"
-//                                   className="form-control" aria-describedby="emailHelp"
-//                                   required value={this.state.email} onChange=
-//                                   {this.onEmailChange.bind(this)}/>
-//                             </div>
-//                             </div>
-//                             </div>
-//                             <div className="form-group">
-//                                 <input placeholder = "Subject"  id="subject" type="text"
-//                                   className="form-control" required value={this.state.subject}
-//                                   onChange={this.onSubjectChange.bind(this)}/>
-//                             </div>
-//                             <div className="form-group">
-//                                 <textarea placeholder = "Message"  id="message"
-//                                    className="form-control" rows="1"
-//                                    required value={this.state.message}
-//                                    onChange= {this.onMsgChange.bind(this)}/>
-//                             </div>
-//                             <button type="submit" className="primary-btn submit">Submit</button>
-//                             </form>
-//                         </div>
-//                     </div>
+import React, { useState } from "react";
+import axios from "axios";
+import { apiUrl } from "../config/constants";
+import { Form, Col, Button } from "react-bootstrap";
+import "./formStyle.scss";
+import { useSelector } from "react-redux";
+import { selectUser } from "../store/user/selectors";
+import { selectSpaceDetails } from "../store/spaces/selectors";
 
-//                 </div>
+function ContactUs() {
+  const [name, setName] = useState(" ");
+  // const [email, setEmail] = useState(" ");
+  const [message, setMessage] = useState(" ");
 
-//             </div>
-//         </div>
-//     );
-// }
+  const user = useSelector(selectUser);
+  const spaceUser = useSelector(selectSpaceDetails).user;
 
-// class Contact extends React.Component {
+  const sendEmail = async (name, userEmail, spaceUserEmail, message) => {
+    const res = await axios.post(`${apiUrl}/email`, {
+      name,
+      userEmail,
+      spaceUserEmail,
+      message,
+    });
+    console.log("any respond?", res);
+  };
 
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//           name: '',
-//           email: '',
-//           subject:'',
-//           message: ''
-//         }
-//     }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const userEmail = user.email;
+    const spaceUserEmail = spaceUser.email;
+    sendEmail(name, userEmail, spaceUserEmail, message);
+  };
+
+  return (
+    <Form as={Col} md={{ span: 4, offset: 2 }}>
+      <h1 className="mt-5 mb-5">Contact Us</h1>
+      <Form.Group>
+        <Form.Label>Name</Form.Label>
+        <Form.Control
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          type="text"
+          placeholder="Your name please"
+          required
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Message</Form.Label>
+        <Form.Control
+          value={message}
+          onChange={(event) => setMessage(event.target.value)}
+          type="text"
+          placeholder="What is your message?"
+        />
+      </Form.Group>
+      <Form.Group className="mt-5">
+        <Button variant="primary" type="submit" onClick={handleSubmit}>
+          Send
+        </Button>
+      </Form.Group>
+    </Form>
+  );
+}
+
+export default ContactUs;

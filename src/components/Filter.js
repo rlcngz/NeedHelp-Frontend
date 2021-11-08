@@ -1,22 +1,11 @@
 import React, { useState } from "react";
-// import { useParams } from "react-router-dom";
-// import { fetchCategoriesById } from "../store/categories/actions";
 import { selectCategoryDetails } from "../store/categories/selectors";
 import { useSelector } from "react-redux";
 
 function Filter(props) {
   const { value, setValue } = props;
   const category = useSelector(selectCategoryDetails);
-  // const filterDetails = useSelector(selectFilter);
   const [checkedValues, setCheckedValues] = useState([]);
-  // console.log("anything category here?", category);
-  // console.log("anything category here?", filterDetails);
-
-  // useEffect(() => {
-  //   if (value) {
-  //     setValue({ ...value, services: value.services.filter(() => true) });
-  //   }
-  // }, [checkedValues, setValue, value]);
 
   function handleCategoryChecked(event) {
     var newChecked = checkedValues;
