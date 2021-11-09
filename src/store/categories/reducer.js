@@ -17,6 +17,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         selected: { ...action.payload },
       };
+
     default:
       return state;
   }

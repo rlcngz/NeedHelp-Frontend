@@ -160,15 +160,23 @@ export const updateMySpace = (
   description,
   serviceId,
   price,
-  logoUrl
+  logoUrl,
+  street,
+  number,
+  postCode,
+  city,
+  country,
+  lng,
+  lat
 ) => {
   return async (dispatch, getState) => {
     const { space, token } = selectUser(getState());
     // console.log("right space", space);
     dispatch(appLoading());
-    console.log(
-      `Title: ${title}, description: ${description}, price: ${price}, serviceId: ${serviceId},logo: ${logoUrl}`
-    );
+    // console.log(
+    //   `Title: ${title}, description: ${description}, price: ${price}, serviceId: ${serviceId},logo: ${logoUrl}`
+    // );
+
     try {
       const response = await axios.patch(
         `${apiUrl}/spaces/${space.id}`,
@@ -178,6 +186,13 @@ export const updateMySpace = (
           serviceId,
           logoUrl,
           price,
+          street,
+          number,
+          postCode,
+          city,
+          country,
+          lng,
+          lat,
         },
         {
           headers: {
