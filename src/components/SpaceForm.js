@@ -15,12 +15,35 @@ export default function SpaceForm() {
   const [serviceId, setServiceId] = useState(space.serviceId);
   const [price, setPrice] = useState(space.price);
   const [logoUrl, setLogoUrl] = useState(space.logoUrl);
+  const [street, setStreet] = useState(space.street);
+  const [number, setNumber] = useState(space.number);
+  const [postCode, setPostCode] = useState(space.postCode);
+  const [city, setCity] = useState(space.city);
+  const [country, setCountry] = useState(space.country);
+  const [lng, setLng] = useState(space.lng);
+  const [lat, setLat] = useState(space.lat);
+
   const [serviceOptions, setServiceOptions] = useState([]);
 
   function submitForm(event) {
     event.preventDefault();
 
-    dispatch(updateMySpace(title, description, serviceId, price, logoUrl));
+    dispatch(
+      updateMySpace(
+        title,
+        description,
+        serviceId,
+        price,
+        logoUrl,
+        street,
+        number,
+        postCode,
+        city,
+        country,
+        lng,
+        lat
+      )
+    );
   }
   async function fetchServiceOptions() {
     const res = await axios.get(`${apiUrl}/services`);
@@ -84,6 +107,62 @@ export default function SpaceForm() {
         <Form.Control
           value={logoUrl}
           onChange={(event) => setLogoUrl(event.target.value)}
+          type="text"
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Street</Form.Label>
+        <Form.Control
+          value={street}
+          onChange={(event) => setStreet(event.target.value)}
+          type="text"
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Number</Form.Label>
+        <Form.Control
+          value={number}
+          onChange={(event) => setNumber(event.target.value)}
+          type="text"
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Post Code</Form.Label>
+        <Form.Control
+          value={postCode}
+          onChange={(event) => setPostCode(event.target.value)}
+          type="text"
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>City</Form.Label>
+        <Form.Control
+          value={city}
+          onChange={(event) => setCity(event.target.value)}
+          type="text"
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Country</Form.Label>
+        <Form.Control
+          value={country}
+          onChange={(event) => setCountry(event.target.value)}
+          type="text"
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Longitude</Form.Label>
+        <Form.Control
+          value={lng}
+          onChange={(event) => setLng(event.target.value)}
+          type="text"
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Latitude</Form.Label>
+        <Form.Control
+          value={lat}
+          onChange={(event) => setLat(event.target.value)}
           type="text"
         />
       </Form.Group>

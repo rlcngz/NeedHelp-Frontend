@@ -7,7 +7,6 @@ import { selectUser } from "../store/user/selectors";
 import Loading from "../components/Loading";
 import ContactUs from "../components/ContactUs";
 import CommentForm from "../components/CommentForm";
-// import Book from "../components/Book";
 
 function Space() {
   const dispatch = useDispatch();

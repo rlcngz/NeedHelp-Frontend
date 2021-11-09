@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { selectUser, selectUserSpace } from "../store/user/selectors";
 import { useHistory } from "react-router-dom";
 import Loading from "../components/Loading";
-
 import SpaceForm from "../components/SpaceForm";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
