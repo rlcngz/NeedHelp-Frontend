@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { useParams } from "react-router";
 import { useDispatch } from "react-redux";
 import { postComment } from "../store/user/actions";
+import { showMessageWithTimeout } from "../store/appState/actions";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import "./styles.css";
+import "./formStyle.scss";
 
 function CommentForm() {
   const dispatch = useDispatch();
@@ -14,9 +17,10 @@ function CommentForm() {
   function submitForm(event) {
     event.preventDefault();
     dispatch(postComment(name, comment, id));
+    dispatch(showMessageWithTimeout("success", false, "Comment sent", 3000));
   }
   return (
-    <Form as={Col} md={{ span: 4, offset: 2 }}>
+    <Form as={Col} md={{ span: 4, offset: 2 }} className="form">
       <h1 className="mt-5 mb-5">Leave a comment</h1>
       <Form.Group>
         <Form.Label>Name</Form.Label>

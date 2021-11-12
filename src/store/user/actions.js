@@ -142,9 +142,7 @@ export const postComment = (firstName, comment, id) => {
       }
     );
     // console.log("am I getting?", response.data);
-    dispatch(
-      showMessageWithTimeout("success", false, response.data.message, 3000)
-    );
+    dispatch(showMessageWithTimeout("success", false, "Comment Sent", 3000));
     dispatch(postCommentSuccess(response.data));
     dispatch(appDoneLoading());
   };

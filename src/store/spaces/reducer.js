@@ -1,4 +1,8 @@
-import { FETCH_SPACES_SUCCESS, FETCH_SPACEDETAILS_SUCCESS } from "./actions";
+import {
+  FETCH_SPACES_SUCCESS,
+  FETCH_SPACEDETAILS_SUCCESS,
+  COMMENT_POST_SUCCESS,
+} from "./actions";
 
 const initialState = {
   lists: [],
@@ -16,6 +20,14 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         select: { ...action.payload },
+      };
+    case COMMENT_POST_SUCCESS:
+      return {
+        ...state,
+        select: {
+          ...state.select,
+          reviews: [action.payload, ...state.select.reviews],
+        },
       };
     default:
       return state;

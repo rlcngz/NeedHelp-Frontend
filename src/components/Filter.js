@@ -20,8 +20,9 @@ function Filter(props) {
     } else {
       setValue({
         ...value,
-        services: value.services.filter((el) =>
-          newChecked.includes(el.id.toString())
+        services: value.services.filter(
+          (el) => newChecked.includes(el.id.toString()) // Setting the filtered services already
+          // just set the selected categories (id)
         ),
       });
     }

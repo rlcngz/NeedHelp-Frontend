@@ -4,8 +4,9 @@
   margin-top: 50px;
   width: 180px;
   float: left;
-  background-color: rgb(86, 216, 173);
+  background-color: rgb(166, 238, 214);
   margin-left: 32px;
   border-radius: 10px;
   text-align: center;
+  justify-content: "center";
 }

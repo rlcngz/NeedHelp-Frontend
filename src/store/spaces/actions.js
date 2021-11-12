@@ -4,6 +4,7 @@ import { apiUrl } from "../../config/constants";
 
 export const FETCH_SPACES_SUCCESS = "FETCH_SPACES_SUCCESS";
 export const FETCH_SPACEDETAILS_SUCCESS = "FETCH_SPACEDETAILS_SUCCESS";
+export const COMMENT_POST_SUCCESS = "COMMENT_POST_SUCCESS";
 
 export const fetchSpacesSuccess = (spaces) => ({
   type: FETCH_SPACES_SUCCESS,
@@ -13,6 +14,11 @@ export const fetchSpacesSuccess = (spaces) => ({
 export const fetchSpaceDetails = (detail) => ({
   type: FETCH_SPACEDETAILS_SUCCESS,
   payload: detail,
+});
+
+export const postCommentSuccess = (comment) => ({
+  type: COMMENT_POST_SUCCESS,
+  payload: comment,
 });
 
 export const fetchSpaces = () => {
