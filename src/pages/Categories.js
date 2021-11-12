@@ -23,9 +23,6 @@ function Categories() {
             src="https://www.epfl.ch/research/domains/cnp/wp-content/uploads/2020/03/i-need-help-1024x683.jpg"
             alt="First slide"
           />
-          <Carousel.Caption>
-            {/* <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
-          </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
@@ -33,10 +30,6 @@ function Categories() {
             src="http://www.lollydaskal.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-16-at-5.16.54-PM.png"
             alt="Second slide"
           />
-
-          <Carousel.Caption>
-            {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> */}
-          </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
@@ -44,15 +37,9 @@ function Categories() {
             src="https://st2.depositphotos.com/5312214/10024/i/950/depositphotos_100249822-stock-photo-i-need-your-help-adhesive.jpg"
             alt="Third slide"
           />
-
-          <Carousel.Caption>
-            {/* <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p> */}
-          </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      <div>
+      <div style={{ display: "-ms-flexbox" }}>
         {categories.map((category) => {
           return (
             <Category

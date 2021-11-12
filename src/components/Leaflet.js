@@ -18,8 +18,8 @@ function Leaflet() {
   return (
     <div
       style={{
-        height: "150px",
-        width: 100,
+        display: "flex",
+        justifyContent: "flex-end",
       }}
     >
       <MapContainer
@@ -29,11 +29,11 @@ function Leaflet() {
         style={{
           border: "2px solid",
           borderRadius: "10px",
-          height: "40vw",
-          width: "50vw",
-          maxWidth: "600px",
+          height: "30vw",
+          width: "40vw",
+          maxWidth: "500px",
           maxHeight: "500px",
-          margin: "0px 18%",
+          margin: "0px 1%",
         }}
       >
         <TileLayer

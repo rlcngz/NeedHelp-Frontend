@@ -3,14 +3,16 @@ import axios from "axios";
 import { apiUrl } from "../config/constants";
 import { Form, Col, Button } from "react-bootstrap";
 import "./formStyle.scss";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../store/user/selectors";
 import { selectSpaceDetails } from "../store/spaces/selectors";
+import { showMessageWithTimeout } from "../store/appState/actions";
 
 function ContactUs() {
   const [name, setName] = useState(" ");
   // const [email, setEmail] = useState(" ");
   const [message, setMessage] = useState(" ");
+  const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
   const spaceUser = useSelector(selectSpaceDetails).user;
@@ -30,10 +32,11 @@ function ContactUs() {
     const userEmail = user.email;
     const spaceUserEmail = spaceUser.email;
     sendEmail(name, userEmail, spaceUserEmail, message);
+    dispatch(showMessageWithTimeout("success", false, "Email sent", 3000));
   };
 
   return (
-    <Form as={Col} md={{ span: 4, offset: 2 }}>
+    <Form as={Col} md={{ span: 4, offset: 2 }} className="form">
       <h1 className="mt-5 mb-5">Contact Us</h1>
       <Form.Group>
         <Form.Label>Name</Form.Label>
