@@ -13,6 +13,7 @@ export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
 export const LOG_OUT = "LOG_OUT";
 export const SPACE_UPDATED = "SPACE_UPDATED";
 export const COMMENT_POST_SUCCESS = "COMMENT_POST_SUCCESS";
+export const ADD_IMAGE_SUCCESS = "ADD_IMAGE_SUCCESS";
 
 const loginSuccess = (userWithToken) => {
   return {
@@ -28,18 +29,27 @@ const tokenStillValid = (userWithoutToken) => ({
 
 export const logOut = () => ({ type: LOG_OUT });
 
-export const signUp = (firstName, lastName, email, password, isService) => {
+export const signUp = (
+  firstName,
+  lastName,
+  email,
+  password,
+  isService,
+  image
+) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
+      console.log("any image here", image);
       const response = await axios.post(`${apiUrl}/signup`, {
         firstName,
         lastName,
         email,
         password,
         isService,
+        image,
       });
-
+      console.log("what is response", response);
       dispatch(loginSuccess(response.data));
       dispatch(showMessageWithTimeout("success", true, "account created"));
       dispatch(appDoneLoading());
@@ -217,3 +227,10 @@ export const updateMySpace = (
     }
   };
 };
+
+export function sendImageUrl(url) {
+  return {
+    type: ADD_IMAGE_SUCCESS,
+    payload: url,
+  };
+}
