@@ -11,7 +11,7 @@ export default function LoggedIn() {
   const isService = useSelector(selectIsService);
 
   const isServiceCheck = isService && (
-    <Nav.Link href={`/me`}>My Space</Nav.Link>
+    <Nav.Link href={`/myspace`}>My Space</Nav.Link>
   );
 
   return (
