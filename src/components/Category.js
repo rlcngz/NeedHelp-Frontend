@@ -1,32 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
-import "./styles.css";
-import { Jumbotron } from "react-bootstrap";
+// import "./styles.css";
 
 function Category({ id, title }) {
   return (
-    <Jumbotron>
+    <Link to={`/categories/${id}`}>
+      {" "}
       <Card
         style={{
-          width: "18rem",
-          backgroundColor: "rgb(166, 238, 214)",
-          border: "2px solid blue",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          lineHeight: " 24px",
+          float: "left",
+          width: "16rem",
+          height: "12rem",
+          padding: "65px",
+          backgroundColor: "#c6ccc9",
+          border: "2px solid black",
+          borderRadius: "20px",
+          margin: "10px",
         }}
       >
-        <Card.Body>
-          <Card.Title
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              // alignItems: "center",
-            }}
-          >
-            <Link to={`/categories/${id}`}>{title}</Link>
+        {" "}
+        <Card.Body
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignSelf: "center",
+          }}
+        >
+          <Card.Title style={{ color: "black", fontFamily: "Rockwell" }}>
+            {title}
           </Card.Title>
         </Card.Body>
-      </Card>
-    </Jumbotron>
+      </Card>{" "}
+    </Link>
   );
 }
 

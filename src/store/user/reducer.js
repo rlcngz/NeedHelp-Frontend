@@ -3,6 +3,7 @@ import {
   LOGIN_SUCCESS,
   TOKEN_STILL_VALID,
   COMMENT_POST_SUCCESS,
+  ADD_IMAGE_SUCCESS,
 } from "./actions";
 
 const initialState = {
@@ -28,6 +29,9 @@ export default function reducer(state = initialState, action) {
       return { ...state, ...action.payload };
 
     case COMMENT_POST_SUCCESS:
+      return { ...state, ...action.payload };
+
+    case ADD_IMAGE_SUCCESS:
       return { ...state, ...action.payload };
 
     default:

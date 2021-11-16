@@ -44,7 +44,7 @@ function App() {
         <Route exact path="/" component={Categories} />
         <Route path="/categories/:id" component={Details} />
         <Route path="/spaces/:id" component={Space} />
-        <Route path="/me" component={MySpace} />
+        <Route path="/myspace" component={MySpace} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
       </Switch>

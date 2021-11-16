@@ -1,42 +1,52 @@
-# Frontend template
+# I Need Help 🔩🔧
 
-This is a simple react/redux/jwt template to start a project quickly
 
 ## Table of contents:
+-Introduction <br />
+-Technology Used <br />
+-Goals of the project
 
-- **[Setup](#setup-how-to-use-this-template)**
-- **[Create React App docs](#cra-docs)**
 
-## SETUP How to use this template
 
-1. Create a new project based on this template using the `Use this template` button
+## Introduction:
+This is an on/demand app which you can create your own space as a service provider or just a service user. As a service provider, you can promote your service and as a customer you can search for a service on map, you can get in touch with service provider and leave a comment. 
 
-![HOW_TO_USE](https://user-images.githubusercontent.com/20372832/77003323-70966180-695d-11ea-8abe-b362d57135f3.gif)
+## Technology used:
+### Backend
+<ul>
+  <li>Express</li>
+  <li>REST</li>
+  <li>Sequelize</li>
+  <li>Postgres</li>
+  <li>NodeJS</li>
+  <li>Nodemailer</li>
+</ul>
 
-2. Clone the app
+### Frontend
+<ul>
+  <li>React</li>
+  <li>Redux</li>
+  <li>Axios</li>
+  <li>Bootstrap</li>
+  <li>ReactLeaflet</li>
+</ul>
 
-```
-git clone git@github.com:YOUR_GITHUB_NAME/YOUR_PROJECT_NAME.git
-```
+## Goals of the project:
+The main goal of this project is to gain experience developing a full-stack app. I also put a little extra emphasis on exploring new technologies and see how well and how fast I would be able to adapt to something new while also consolidating the knowledge of the technologies learned during the academy. For that purpose, I decided to use Nodemailer and ReactLeaflet as new technologies apart from the technologies I was already familiar with. I used a Bootstrap for the UI design which was also new to me. In short:
 
-3. cd into your project
+<ul>
+  <li>Practice full-stack development,</li>
+  <li>Learn new technologies,</li>
+  <li>Implement a developer's approach by creating and following User stories and wireframes.</li>
+</ul>
 
-```
-cd YOUR_PROJECT_NAME
-```
+## User stories and Wireframe:
 
-4. install dependencies
+<ul>
+  <li><a href="https://github.com/users/rlcngz/projects/1">User Stories</a></li>
+  <li><a href="https://wireframepro.mockflow.com/view/MSWgUwOz4h">Wireframe</a></li>
+</ul>
 
-```
-npm install
-```
-
-5. Start development server with npm start
-
-```
-npm start
-```
-
-## CRA docs
-
-The normal Create React App docs can be found in [CRA_DOCS.md](./CRA_DOCS.md)
+## Backend Repository:
+The back-end was built in express and it is a REST a API. The database is built using Postgres and Sequelize. You can find the back-end's repository <a href="https://github.com/rlcngz/NeedHelp-Backend">here</a>
+  

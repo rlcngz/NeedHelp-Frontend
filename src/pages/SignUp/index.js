@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { cloudinaryUrl } from "../../config/constants";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
@@ -17,6 +19,10 @@ export default function SignUp() {
   const token = useSelector(selectToken);
   const history = useHistory();
   const [isService, setIsService] = useState(false);
+  const [image, setImage] = useState("");
+  const [url, setUrl] = useState("");
+  const [imageToUpload, setImageToUpload] = useState("");
+  const [imageUploading, setImageUploading] = useState(false);
 
   useEffect(() => {
     if (token !== null) {
@@ -26,14 +32,32 @@ export default function SignUp() {
 
   function submitForm(event) {
     event.preventDefault();
-
-    dispatch(signUp(firstName, lastName, email, password, isService));
+    console.log("submitting form ");
+    if (!imageUploading) {
+      console.log("dispatching ");
+      dispatch(
+        signUp(firstName, lastName, email, password, isService, image, url)
+      );
+    }
 
     setEmail("");
     setPassword("");
     setFirstName("");
     setLastName("");
     setIsService(false);
+    setImage("");
+    setUrl("");
+  }
+
+  async function addImage(e) {
+    setImageUploading(true);
+    const data = new FormData();
+    data.append("file", imageToUpload);
+    data.append("upload_preset", "roff5u0o");
+    const response = await axios.post(`${cloudinaryUrl}`, data);
+    console.log("Cloudinary Response", response.data);
+    setImage(response.data.url);
+    setImageUploading(false);
   }
 
   return (
@@ -94,6 +118,17 @@ export default function SignUp() {
             required
           />
         </Form.Group>
+        {isService && (
+          <>
+            <input
+              type="file"
+              onChange={(e) => {
+                setImageToUpload(e.target.files[0]);
+              }}
+            ></input>
+            <button onClick={addImage}> Upload </button>
+          </>
+        )}
         <Form.Group className="mt-5">
           <Button variant="primary" type="submit" onClick={submitForm}>
             Sign up

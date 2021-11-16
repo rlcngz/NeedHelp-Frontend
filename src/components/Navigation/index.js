@@ -15,12 +15,21 @@ export default function Navigation() {
 
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand as={NavLink} to="/">
-        I NEED HELP
+      <Navbar.Brand as={NavLink} to="/" style={{}}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            fontFamily: "rockwell",
+          }}
+        >
+          <h3 style={{ marginLeft: "30px" }}>INEEDHELP.COM</h3>
+        </div>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav style={{ width: "100%" }} fill>
+        <Nav style={{ width: "100%", fontFamily: "rockwell" }} fill>
           <NavbarItem path="/" linkText="Home" />
           {loginLogoutControls}
         </Nav>
