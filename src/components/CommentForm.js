@@ -21,7 +21,7 @@ function CommentForm() {
   }
   return (
     <Form as={Col} md={{ span: 4, offset: 2 }} className="form">
-      <h1 className="mt-5 mb-5">Leave a comment</h1>
+      <h1 className="mt-5 mb-5">Leave a review</h1>
       <Form.Group>
         <Form.Label>Name</Form.Label>
         <Form.Control

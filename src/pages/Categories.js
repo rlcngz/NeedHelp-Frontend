@@ -15,20 +15,21 @@ function Categories() {
 
   return (
     <main>
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         {" "}
         <iframe
-          src="https://c.tenor.com/oxH5Dal_Xr4AAAAM/help-wasabi.gif"
-          width="215"
-          height="350"
+          // src="https://c.tenor.com/oxH5Dal_Xr4AAAAM/help-wasabi.gif"
+          src="https://c.tenor.com/Wkpbi1O8nSoAAAAC/help-me.gif"
+          width="550"
+          height="375"
           frameBorder="10"
           allowFullScreen
           title="thumbnail"
         ></iframe>
-        <img
+        {/* <img
           src="https://thetreatmentspecialist.com/wp-content/uploads/2018/09/i-need-help-550x321.jpg"
           alt=" "
-        />
+        /> */}
       </div>
       <div>
         {categories.map((category) => {

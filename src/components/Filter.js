@@ -31,11 +31,8 @@ function Filter(props) {
   return (
     <section>
       <section>
-        <section>
-          <h3>Filters</h3>
-        </section>
         <div>
-          <h5>{category.title}</h5>
+          <h3>{category.title}</h3>
           {category.services.map((service) => (
             <div key={service.id}>
               <input
