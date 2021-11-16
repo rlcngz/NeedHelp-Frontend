@@ -10,6 +10,7 @@ import { fetchReviews } from "../store/reviews/actions";
 import Loading from "../components/Loading";
 import Filter from "../components/Filter";
 import Leaflet from "../components/Leaflet";
+import Button from "react-bootstrap/Button";
 
 function Details() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function Details() {
       <section
         style={{
           display: "flex",
+          justifyContent: "space-between",
           marginTop: "50px",
         }}
       >
@@ -55,7 +57,6 @@ function Details() {
             style={{
               display: "flex",
               flexDirection: "column",
-              // border: "2px solid black",
               margin: " 20 px",
               padding: "10px",
               fontFamily: "rockwell",
@@ -70,8 +71,10 @@ function Details() {
                   flexDirection: "column",
                   justifyContent: "center",
                   border: "1px solid black",
+                  borderRadius: "20px",
                   fontFamily: "rockwell",
-                  padding: "10px",
+                  padding: "20px",
+                  marginBottom: "10px",
                 }}
               >
                 <h4>{space.title}</h4>
@@ -79,17 +82,22 @@ function Details() {
                 <p>
                   <b>About:</b> {space.description}
                 </p>
-                <Link to={`/spaces/${space.id}`}>
-                  <button style={{ color: "red", backgroundColor: "aqua" }}>
+                {/* <Link to={`/spaces/${space.id}`}>
+                  <button style={{ color: "white", backgroundColor: "blue" }}>
                     More details
                   </button>
+                </Link> */}
+                <Link to={`/spaces/${space.id}`}>
+                  <Button variant="primary" type="button">
+                    More Details
+                  </Button>
                 </Link>
               </div>
             ))}
           </div>
         ))}
+        <Leaflet />
       </section>
-      <Leaflet />
     </section>
   );
 }

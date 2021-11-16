@@ -27,11 +27,11 @@ function MySpace() {
       <div>
         <img src={userSpace.logoUrl} alt="" width="50%" />
         <p>
-          <b>Description:</b>
+          <b>Description: </b>
           {userSpace.description}
         </p>
         <p>
-          <b>Price:</b>
+          <b>Price: </b>
           {userSpace.price} € for hour
         </p>
         <Container>

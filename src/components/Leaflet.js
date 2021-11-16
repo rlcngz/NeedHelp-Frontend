@@ -29,8 +29,8 @@ function Leaflet() {
         style={{
           border: "2px solid",
           borderRadius: "10px",
-          height: "30vw",
-          width: "40vw",
+          height: "20vw",
+          width: "30vw",
           maxWidth: "500px",
           maxHeight: "500px",
           margin: "0px 1%",

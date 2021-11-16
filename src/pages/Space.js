@@ -29,8 +29,14 @@ function Space() {
     <div style={{ fontFamily: "rockwell" }}>
       <h1>{space.title}</h1>
       <img src={space.logoUrl} alt="" width="50%" style={{ padding: "10px" }} />
-      <h6> About Us:</h6> <p> {space.description}</p>
-      <h6>Price:</h6> <p>{space.price} € per hour</p>
+      <h6>
+        <b>About Us:</b>
+      </h6>{" "}
+      <p> {space.description}</p>
+      <h6>
+        <b>Price:</b>
+      </h6>{" "}
+      <p>{space.price} € per hour</p>
       <div style={{ display: "flex" }}>
         <Container style={{ backgroundColor: "white" }}>
           {displayButtons ? (
@@ -40,13 +46,13 @@ function Space() {
         </Container>
         <Container style={{ backgroundColor: "white" }}>
           {displayButtons ? (
-            <Button onClick={() => setEditComment(true)}>Comment</Button>
+            <Button onClick={() => setEditComment(true)}>Review</Button>
           ) : null}
           {token && editComment ? <CommentForm /> : null}
         </Container>
       </div>{" "}
       <hr />
-      <h5>Comments</h5>
+      <h5>Reviews</h5>
       {space.reviews.map((rev) => (
         <ul key={rev.id}>
           <li>
