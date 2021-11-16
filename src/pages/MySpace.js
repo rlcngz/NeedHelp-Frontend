@@ -22,7 +22,7 @@ function MySpace() {
 
   const displayButtons = id === space.userId && editMode === false;
   return (
-    <div>
+    <div style={{ fontFamily: "rockwell" }}>
       <h1>{userSpace.title}</h1>
       <div>
         <img src={userSpace.logoUrl} alt="" width="50%" />

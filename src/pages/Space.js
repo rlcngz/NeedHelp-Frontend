@@ -26,11 +26,11 @@ function Space() {
   const displayButtons = token && editComment === false;
 
   return (
-    <div>
+    <div style={{ fontFamily: "rockwell" }}>
       <h1>{space.title}</h1>
-      <img src={space.logoUrl} alt="" width="50%" />
-      <p>About Us: {space.description}</p>
-      <p>Price: {space.price} € per hour</p>
+      <img src={space.logoUrl} alt="" width="50%" style={{ padding: "10px" }} />
+      <h6> About Us:</h6> <p> {space.description}</p>
+      <h6>Price:</h6> <p>{space.price} € per hour</p>
       <div style={{ display: "flex" }}>
         <Container style={{ backgroundColor: "white" }}>
           {displayButtons ? (
@@ -44,9 +44,8 @@ function Space() {
           ) : null}
           {token && editComment ? <CommentForm /> : null}
         </Container>
-      </div>
-      {/* {token ? <ContactUs /> : null} */}
-      {/* {token ? <CommentForm /> : null} */}
+      </div>{" "}
+      <hr />
       <h5>Comments</h5>
       {space.reviews.map((rev) => (
         <ul key={rev.id}>

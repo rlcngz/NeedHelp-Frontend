@@ -39,7 +39,7 @@ function Details() {
 
   return (
     <section>
-      <section style={{ marginTop: "25px" }}>
+      <section style={{ marginTop: "25px", fontFamily: "rockwell" }}>
         {" "}
         <Filter setValue={setFilterDetails} value={filterDetails} />
       </section>
@@ -53,9 +53,12 @@ function Details() {
           <div
             key={serv.id}
             style={{
-              //   display: "flex",
-              //   alignItems: "center",
-              border: "1px solid black",
+              display: "flex",
+              flexDirection: "column",
+              // border: "2px solid black",
+              margin: " 20 px",
+              padding: "10px",
+              fontFamily: "rockwell",
             }}
           >
             <h2>{serv.title}</h2>
@@ -67,11 +70,15 @@ function Details() {
                   flexDirection: "column",
                   justifyContent: "center",
                   border: "1px solid black",
+                  fontFamily: "rockwell",
+                  padding: "10px",
                 }}
               >
                 <h4>{space.title}</h4>
                 <img style={{ width: "100px" }} src={space.logoUrl} alt="" />
-                <p>About: {space.description}</p>
+                <p>
+                  <b>About:</b> {space.description}
+                </p>
                 <Link to={`/spaces/${space.id}`}>
                   <button style={{ color: "red", backgroundColor: "aqua" }}>
                     More details
