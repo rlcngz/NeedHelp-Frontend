@@ -24,7 +24,7 @@ export default function Navigation() {
             fontFamily: "rockwell",
           }}
         >
-          <h3 style={{ marginLeft: "30px" }}>INEEDHELP.COM</h3>
+          <h3 style={{ marginLeft: "30px" }}>I-NEED-HELP.COM</h3>
         </div>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

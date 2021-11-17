@@ -7,6 +7,9 @@ function Filter(props) {
   const category = useSelector(selectCategoryDetails);
   const [checkedValues, setCheckedValues] = useState([]);
 
+  // console.log("category", category);
+  // console.log("any value here", value);
+
   function handleCategoryChecked(event) {
     var newChecked = checkedValues;
     if (event.target.checked) {
@@ -16,13 +19,12 @@ function Filter(props) {
     }
     setCheckedValues(newChecked);
     if (!newChecked.length) {
-      setValue(value);
+      setValue(category);
     } else {
       setValue({
-        ...value,
-        services: value.services.filter(
-          (el) => newChecked.includes(el.id.toString()) // Setting the filtered services already
-          // just set the selected categories (id)
+        ...category,
+        services: category.services.filter((el) =>
+          newChecked.includes(el.id.toString())
         ),
       });
     }
