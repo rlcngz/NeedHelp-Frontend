@@ -20,7 +20,7 @@ function CommentForm() {
     dispatch(showMessageWithTimeout("success", false, "Comment sent", 3000));
   }
   return (
-    <Form as={Col} md={{ span: 4, offset: 2 }} className="form">
+    <Form as={Col} md={{ span: 10, offset: 1 }} className="form">
       <h1 className="mt-5 mb-5">Leave a review</h1>
       <Form.Group>
         <Form.Label>Name</Form.Label>
@@ -35,6 +35,7 @@ function CommentForm() {
       <Form.Group>
         <Form.Label>Comment</Form.Label>
         <Form.Control
+          style={{ height: "300px" }}
           value={comment}
           onChange={(event) => setComment(event.target.value)}
           type="text"

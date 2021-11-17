@@ -35,9 +35,6 @@ function Details() {
 
   if (!filterDetails || !items) return <Loading />;
 
-  // filtering happens here:
-  // const filteredServices = services.filter(s => filterDetails.includes(s.categoryId))
-
   return (
     <section>
       <section style={{ marginTop: "25px", fontFamily: "rockwell" }}>
@@ -84,11 +81,6 @@ function Details() {
                 <p>
                   <b>About:</b> {space.description}
                 </p>
-                {/* <Link to={`/spaces/${space.id}`}>
-                  <button style={{ color: "white", backgroundColor: "blue" }}>
-                    More details
-                  </button>
-                </Link> */}
                 <Link to={`/spaces/${space.id}`}>
                   <Button variant="primary" type="button">
                     More Details
