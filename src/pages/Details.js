@@ -75,6 +75,8 @@ function Details() {
                   fontFamily: "rockwell",
                   padding: "20px",
                   marginBottom: "10px",
+                  width: "200px",
+                  height: "300px",
                 }}
               >
                 <h4>{space.title}</h4>
