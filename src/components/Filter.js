@@ -3,8 +3,8 @@ import { selectCategoryDetails } from "../store/categories/selectors";
 import { useSelector } from "react-redux";
 
 function Filter(props) {
-  const { value, setValue } = props;
   const category = useSelector(selectCategoryDetails);
+  const { setValue } = props;
   const [checkedValues, setCheckedValues] = useState([]);
 
   // console.log("category", category);
