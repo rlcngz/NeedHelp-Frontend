@@ -9,6 +9,7 @@ import { selectToken } from "../../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
+import { showMessageWithTimeout } from "../../store/appState/actions";
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -56,6 +57,7 @@ export default function SignUp() {
     data.append("upload_preset", "roff5u0o");
     const response = await axios.post(`${cloudinaryUrl}`, data);
     console.log("Cloudinary Response", response.data);
+    dispatch(showMessageWithTimeout("success", false, "Image added!", 1500));
     setImage(response.data.url);
     setImageUploading(false);
   }
